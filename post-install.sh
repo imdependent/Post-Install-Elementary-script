@@ -23,6 +23,7 @@ rm -rf /usr/lib/plugs/GnomeCC/gnomecc-wacom.plug
 
 apt-get update && apt-get upgrade -y && apt-get dist-upgrade -y
 
+
 #################################
 #      REMOVE SOME PACKAGES     #
 #################################
@@ -102,7 +103,7 @@ wget http://archive.ualinux.com/ubuntu/main/all/ualinux-repository.deb
 
 sudo dpkg -i /tmp/ualinux-repository.deb
 
-wget -O getdeb-repository_0.1-1_all.deb http://goo.gl/ScikR 
+wget -O getdeb-repository_0.1-1_all.deb http://goo.gl/ScikR
 
 sudo dpkg -i getdeb-repository_0.1-1_all.deb
 
@@ -126,14 +127,11 @@ add-apt-repository "deb http://i-hate-farms.github.io/spores trusty main"
 
 add-apt-repository -y ppa:videolan/stable-daily
 
-
-
 #################################
 #  UPDATE KERNEL TO LATEST LTS  #
 #################################
 
 sudo apt-get install -y --install-recommends linux-generic-lts-vivid xserver-xorg-core-lts-vivid xserver-xorg-lts-vivid xserver-xorg-video-all-lts-vivid xserver-xorg-input-all-lts-vivid libwayland-egl1-mesa-lts-vivid xserver-xorg-input-synaptics-lts-vivid linux-signed-generic-lts-vivid
-
 
 #################################
 #       PACKAGES UPGRADE        #
@@ -142,9 +140,7 @@ sudo apt-get install -y --install-recommends linux-generic-lts-vivid xserver-xor
 sudo apt-get dist-upgrade -y
 
 #################################
-
 #       INSTALL PACKAGES        #
-
 #################################
 
 # Fix resume from suspend issues
@@ -156,7 +152,6 @@ sudo apt-get install -y bcmwl-kernel-source
 # accept agreement
 
 echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
-
 sudo apt-get install -y ttf-mscorefonts-installer
 
 # Archive formats support
@@ -214,13 +209,11 @@ sudo update-alternatives --set x-terminal-emulator /usr/bin/terminator
 
 # Improve wifi performance
 # Set the wireless regulatory domain to France
-
 sudo iw reg set FR
-
 # Disable  802.11N (fix random disconnections)
-#sudo bash -c "echo 'options iwlwifi 11n_disable=1' >>/etc/modprobe.d/iwlwifi.conf"
+sudo bash -c "echo 'options iwlwifi 11n_disable=1' >>/etc/modprobe.d/iwlwifi.conf"
 # Install oh-my-zsh
-#sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 #################################
 #         INSTALL APPS          #
@@ -254,23 +247,13 @@ sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update
 sudo apt-get install oracle-java7-installer
 
-
-
 #Install Elementary OS extras
 
-
-
 sudo apt-get install elementary-desktop elementary-tweaks
-
 sudo apt-get install elementary-dark-theme elementary-plastico-theme elementary-whit-e-theme elementary-harvey-theme
-
 sudo apt-get install elementary-elfaenza-icons elementary-nitrux-icons
-
 sudo apt-get install elementary-plank-themes
-
 sudo apt-get install wingpanel-slim indicator-synapse
-
-
 
 #Install a Firewall Application
 
@@ -279,371 +262,190 @@ sudo apt-get install gufw
 #Install Corebird - Twitter client
 
 apt-get update -y
-
 apt-get install corebird
-
 
 #Install elementary+ icon set
 
-
-
 apt-get install elementary-plus
-
 apt-get update
-
 
 # sublime
 
 sudo apt-get install -y sublime-text-installer
 
-
 # Transmissions
 
 sudo apt-get install -y transmission-gtk
 
-
-
 # Numix Circle Icons
-
-
 
 sudo apt-get install -y numix-icon-theme-circle
 
-
-
 # Modify the icon themes so that it only change the apps icons and keep the default folders/ indicators
 
-
-
 wget https://raw.githubusercontent.com/rcatajar/elementary-os-config/master/data/icon-theme-fix/index.theme
-
 sudo mv index.theme /usr/share/icons/Numix-Circle
-
-
 
 # elementary tweaks
 
-
-
 sudo apt-get install -y elementary-tweaks
 
-
-
 # Dropbox
-
-
-
 # Use a custom script because the ubuntu version is outdated and the indicator doesn't work
 
 mkdir -p ~/.config/autostart/   # make sure the autostart directory is here, otherwise the script crash
-
 cd /tmp
-
 wget -O dropbox.zip https://github.com/nathandyer/elementary-dropbox-mods/archive/master.zip
-
 unzip dropbox.zip
-
 cd elementary-dropbox-mods-master/
-
 ./dropbox-elementary.sh
-
 sudo ./dropbox-elementary.sh
-
 ./dropbox-elementary.sh
-
-
 
 # VirtualBox
 
-
-
 cd /tmp
-
 sudo apt-get install -y dkms libsdl1.2debian
-
 wget http://download.virtualbox.org/virtualbox/5.0.6/virtualbox-5.0_5.0.6-103037~Ubuntu~trusty_amd64.deb
-
 sudo dpkg -i virtualbox-5.0_5.0.6-103037~Ubuntu~trusty_amd64.deb
-
-
 
 # Eye of Gnome
 
-
-
 sudo apt-get install -y eog
-
-
-
 
 #Install Tomato timer
 
-
-
 apt-get update
-
 apt-get install tomato
-
-
 
 #Install Configurator - config editor
 
-
-
 apt-get update
-
 apt-get install configurator
-
-
 
 #Install Footnote - note keeping
 
-
-
 apt-get update
-
 apt-get install footnote
-
-
 
 #Install Webby - web app browser
 
-
-
 apt-get update
-
 apt-get install webby-browser
-
-
 
 #Install AppGrid
 
-
-
 apt-get update -y
-
 apt-get install appgrid -y
-
-
-
-apt-get install -f -y
-
 
 
 #Install Google Chrome
 
-
-
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-
 sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-
 sudo apt-get update
-
 sudo apt-get install google-chrome-stable
-
-
 
 #Install ScreenCloud
 
-
-
 wget -q -O- http://download.opensuse.org/repositories/home:olav-st/xUbuntu_14.04/Release.key |  apt-key add -  -y
-
 add-apt-repository 'deb http://download.opensuse.org/repositories/home:/olav-st/xUbuntu_14.04/ /'  -y
-
 apt-get update -y
-
 apt-get install screencloud
-
-
-
-apt-get install -f -y
-
 
 
 #Install ClipGrab
 
-
-
 apt-get update -y
-
 apt-get install clipgrab -y
-
-
 
 #Install Elementary-tweaks
 
-
-
 apt-get update -y
-
 apt-get install elementary-tweaks -y
-
-
 
 #Install KDEconnect
 
-
-
 apt-get install indicator-kdeconnect kdeconnect  -y
-
-
 
 #Install Synaptic
 
-
-
 apt-get install synaptic -y
-
-
 
 #Install VLC
 
-
-
 apt-get install vlc -y
-
-
 
 # Install Videoeditor (Openshot)
 
-
-
 #sudo apt-fast install openshot openshot-doc
-
-
 
 #Install Power Installer
 
-
-
 add-apt-repository -y ppa:donadigo/power-installer -y
-
 apt-get install -y power-installer
-
-
 
 #Install Indicator USB
 
-
-
 apt-get install indicator-usb -y
-
-
 
 #Install Psensor
 
-
-
 apt install lm-sensors hddtemp psensor -y
-
-
 
 #Install MarkMyWords
 
-
-
 apt-get install mark-my-words -y
-
-
 
 #Install Feedreader
 
-
-
 #apt-get install feedreader -y
-
-
 
 #Install dkms
 
-
-
 apt-get install dkms -y
-
-
 
 #Install Agenda, Translator
 
-
-
 apt-get install agenda-tasks translator
-
-
 
 #Install SystemBack
 
-
-
 apt-get install systemback -y
-
-
 
 #Install Transmission
 
-
-
 apt-get install transmission-cli transmission-common transmission-daemon
-
-
 
 #Install Ubuntu-touch Theme
 
-
-
 apt-get install ubuntu-touch-theme
-
-
 
 #Install Arc Theme
 
-
-
 sh -c "echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_15.04/ /' >> /etc/apt/sources.list.d/arc-theme.list"
-
 apt-get update -y
-
 apt-get install arc-theme
 
-
-
-#Install 
+#Install
 
 sudo apt-get install lamp-server^ -y
-
 sudo apt-get install phpmyadmin
-
-
 
 #Install other
 
 apt-get install gdebi -y
-
 apt-get install gedit -y
-
 apt-get install laptop-mode-tools -y
-
 apt-get install conky-std -y
-
 apt-get install lm-sensors -y
-
 apt-get install gpicview -y
-
 apt-get install gnome-system-monitor -y
-
 apt-get install gnome-disk-utility -y
-
 apt-get install gparted -y
-
 apt-get install bleachbit -y
-
 apt-get install preload
 
-
-
 apt-get install -f -y
-
-
 
 # reboot
